@@ -27,7 +27,7 @@ SMODS.Joker{
     eternal_compat = true,
     perishable_compat = true,
     unlocked = true,
-    discovered = true,
+    discovered = false,
     pos = {x=0, y=0},
     config = {
         extra = {
@@ -95,7 +95,7 @@ SMODS.Joker{
     eternal_compat = true,
     perishable_compat = true,
     unlocked = true,
-    discovered = true,
+    discovered = false,
     pos = {x=0, y=0},
     config = {
         extra = {
