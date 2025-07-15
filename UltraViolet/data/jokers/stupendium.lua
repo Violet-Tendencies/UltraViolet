@@ -29,7 +29,7 @@ SMODS.Joker{
     eternal_compat = true,
     perishable_compat = true,
     unlocked = true,
-    discovered = true,
+    discovered = false,
     pos = {x=0, y=0},
     config = {
         extra = {
@@ -97,7 +97,7 @@ SMODS.Joker{
     eternal_compat = true,
     perishable_compat = true,
     unlocked = true,
-    discovered = true,
+    discovered = false,
     pos = {x=0, y=0},
     config = {
         extra = {
@@ -175,7 +175,7 @@ SMODS.Joker{
     eternal_compat = true,
     perishable_compat = true,
     unlocked = true,
-    discovered = true,
+    discovered = false,
     pos = {x=0, y=0},
     config = {
         extra = {
@@ -243,7 +243,7 @@ SMODS.Joker{
     eternal_compat = true,
     perishable_compat = true,
     unlocked = true,
-    discovered = true,
+    discovered = false,
     pos = {x=0, y=0},
     calculate = function(self, card, context)
         if context.after then
@@ -297,7 +297,7 @@ SMODS.Joker{
     eternal_compat = true,
     perishable_compat = true,
     unlocked = true,
-    discovered = true,
+    discovered = false,
     pos = {x=0, y=0},
     add_to_deck = function(self, card, from_debuff)
         for k, v in pairs(G.playing_cards) do
@@ -361,7 +361,7 @@ SMODS.Joker{
     eternal_compat = true,
     perishable_compat = true,
     unlocked = true,
-    discovered = true,
+    discovered = false,
     pos = {x=0, y=0},
     config = {
         extra = {
@@ -413,7 +413,7 @@ SMODS.Joker{
     eternal_compat = true,
     perishable_compat = true,
     unlocked = true,
-    discovered = true,
+    discovered = false,
     pos = {x=0, y=0},
     calculate = function(self, card, context)
         if context.after then
@@ -447,7 +447,7 @@ SMODS.Joker{
     eternal_compat = true,
     perishable_compat = true,
     unlocked = true,
-    discovered = true,
+    discovered = false,
     pos = {x=0, y=0},
     calculate = function(self, card, context)
         if context.after then
@@ -485,7 +485,7 @@ SMODS.Joker{
     eternal_compat = true,
     perishable_compat = true,
     unlocked = true,
-    discovered = true,
+    discovered = false,
     pos = {x=0, y=0},
     config = {
         extra = {
