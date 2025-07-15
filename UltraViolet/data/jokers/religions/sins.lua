@@ -106,7 +106,8 @@ SMODS.Joker{
     pos = {x=0, y=0},
     config = {
         extra = {
-            dollars = 3
+            dollars = 3,
+            dollarsGained = false
         }
     },
     add_to_deck = function(self, card, from_debuff)
@@ -116,10 +117,15 @@ SMODS.Joker{
         if context.open_booster then
             G.GAME.pack_choices = G.GAME.pack_choices + 1
         end
+        if not context.end_of_round then
+            card.ability.extra.dollarsGained = false
+        end
         if context.end_of_round then
-            for k, v in ipairs(G.jokers.cards) do
+            if not card.ability.extra.dollarsGained then
+                card.ability.extra.dollarsGained = true
                 return {
-                    dollars = card.ability.extra.dollars * #G.jokers.cards
+                    dollars = card.ability.extra.dollars * #G.jokers.cards,
+                    card = card
                 }
             end
         end
@@ -127,7 +133,6 @@ SMODS.Joker{
     in_pool = function(self, args)
         return false
     end
-
 }
 
 SMODS.Joker{
