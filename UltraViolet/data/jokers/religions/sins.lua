@@ -15,10 +15,8 @@ SMODS.Rarity({
     },
     badge_colour = HEX("800000")
 })
+
 -- Jokers
-
-
-
 
 SMODS.Joker{
     key = "pride",
@@ -206,21 +204,16 @@ SMODS.Joker{
 
 }
 
---[[ 
-Envy - If this joker has less chips than the blind’s score, it gains 1/8th the blind’s score as chips.
-Lust - Gains 1.25X Mult if two consecutive Face cards are scored.
-Gluttony - This joker gains x0.1 mult for each consumable held; +1 consumable slot.
-Sloth - Cards that are in hand during scoring gain their chips as perma mult 
-]]
-
---[[ SMODS.Joker{
-    key = "pride",
+SMODS.Joker{
+    key = "envy",
     loc_txt = {
-        name = "Pride",
+        name = "Envy",
         text = {
-            'Winning a blind in one hand grants this joker x4 mult',
-            'Loses x0.25 mult for every card scored after the first hand.',
-            '(Can\'t go lower than x1, currently x#1#)'
+            'If this joker has less',
+            'chips than the blind’s score',
+            'it gains 1/8th the',
+            'blind’s score as chips.',
+            '(currently +#1#)'
         }
     },
     atlas = 'SinJokers',
@@ -234,13 +227,11 @@ Sloth - Cards that are in hand during scoring gain their chips as perma mult
     pos = {x=0, y=0},
     config = {
         extra = {
-            rounds = 0,
-            xmult = 1,
-            xmultIncrement = false
+            chips = 0,
         }
     },
     loc_vars = function(self, info_queue, card)
-        return { vars = {card.ability.extra.xmult} }
+        return { vars = {card.ability.extra.chips} }
     end,
     add_to_deck = function(self, card, from_debuff)
         for k, v in pairs(G.P_BLINDS) do
@@ -249,27 +240,14 @@ Sloth - Cards that are in hand during scoring gain their chips as perma mult
     end,
     calculate = function(self, card, context)
         if context.setting_blind then
-            card.ability.extra.xmultIncrement = false
-        end
-        if context.individual and context.cardarea == G.play then
-            if G.GAME.current_round.hands_played > 0 and card.ability.extra.xmult > 1 then
-                juice_card(card)
-                card.ability.extra.xmult = card.ability.extra.xmult - 0.25
+            if card.ability.extra.chips < G.GAME.blind.chips then
+                card.ability.extra.chips = card.ability.extra.chips + (G.GAME.blind.chips/8)
             end
         end
         if context.joker_main then
             return {
-                xmult = card.ability.extra.xmult
+                chips = card.ability.extra.chips
             }
-        end
-        if context.end_of_round then
-            if G.GAME.current_round.hands_played <= 0 then
-                if not card.ability.extra.xmultIncrement then
-                    juice_card(card)
-                    card.ability.extra.xmult = card.ability.extra.xmult + 4
-                    card.ability.extra.xmultIncrement = true
-                end
-            end
         end
     end,
     in_pool = function(self, args)
@@ -279,13 +257,13 @@ Sloth - Cards that are in hand during scoring gain their chips as perma mult
 }
 
 SMODS.Joker{
-    key = "pride",
+    key = "lust",
     loc_txt = {
-        name = "Pride",
+        name = "Lust",
         text = {
-            'Winning a blind in one hand grants this joker x4 mult',
-            'Loses x0.25 mult for every card scored after the first hand.',
-            '(Can\'t go lower than x1, currently x#1#)'
+            'Gains x1 Mult if two consecutive',
+            'Face cards are scored.',
+            '(currently x#1#)'
         }
     },
     atlas = 'SinJokers',
@@ -299,9 +277,8 @@ SMODS.Joker{
     pos = {x=0, y=0},
     config = {
         extra = {
-            rounds = 0,
-            xmult = 1,
-            xmultIncrement = false
+            faceCards = 0,
+            xmult = 1
         }
     },
     loc_vars = function(self, info_queue, card)
@@ -313,13 +290,14 @@ SMODS.Joker{
         end
     end,
     calculate = function(self, card, context)
-        if context.setting_blind then
-            card.ability.extra.xmultIncrement = false
-        end
         if context.individual and context.cardarea == G.play then
-            if G.GAME.current_round.hands_played > 0 and card.ability.extra.xmult > 1 then
-                juice_card(card)
-                card.ability.extra.xmult = card.ability.extra.xmult - 0.25
+            if context.other_card:is_face() then
+                card.ability.extra.faceCards = card.ability.extra.faceCards + 1
+                if card.ability.extra.faceCards >= 2 then
+                    juice_card(card)
+                    card.ability.extra.xmult = card.ability.extra.xmult + 1
+                    card.ability.extra.faceCards = 0
+                end
             end
         end
         if context.joker_main then
@@ -327,14 +305,8 @@ SMODS.Joker{
                 xmult = card.ability.extra.xmult
             }
         end
-        if context.end_of_round then
-            if G.GAME.current_round.hands_played <= 0 then
-                if not card.ability.extra.xmultIncrement then
-                    juice_card(card)
-                    card.ability.extra.xmult = card.ability.extra.xmult + 4
-                    card.ability.extra.xmultIncrement = true
-                end
-            end
+        if context.after then
+            card.ability.extra.faceCards = 0
         end
     end,
     in_pool = function(self, args)
@@ -344,13 +316,14 @@ SMODS.Joker{
 }
 
 SMODS.Joker{
-    key = "pride",
+    key = "gluttony",
     loc_txt = {
-        name = "Pride",
+        name = "Gluttony",
         text = {
-            'Winning a blind in one hand grants this joker x4 mult',
-            'Loses x0.25 mult for every card scored after the first hand.',
-            '(Can\'t go lower than x1, currently x#1#)'
+            'This joker gains x0.1 mult',
+            'for each consumable held',
+            '(currently: x#1#)',
+            '+1 consumable slot'
         }
     },
     atlas = 'SinJokers',
@@ -364,42 +337,29 @@ SMODS.Joker{
     pos = {x=0, y=0},
     config = {
         extra = {
-            rounds = 0,
-            xmult = 1,
-            xmultIncrement = false
+            xchips = 1
         }
     },
     loc_vars = function(self, info_queue, card)
-        return { vars = {card.ability.extra.xmult} }
+        return { vars = {card.ability.extra.xchips} }
     end,
     add_to_deck = function(self, card, from_debuff)
         for k, v in pairs(G.P_BLINDS) do
             v.mult = v.mult*2 
         end
+        G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+    end,
+    remove_from_deck = function(self, card, from_debuff)
+        G.GAME.consumeable_buffer = G.GAME.consumeable_buffer - 1
     end,
     calculate = function(self, card, context)
         if context.setting_blind then
-            card.ability.extra.xmultIncrement = false
-        end
-        if context.individual and context.cardarea == G.play then
-            if G.GAME.current_round.hands_played > 0 and card.ability.extra.xmult > 1 then
-                juice_card(card)
-                card.ability.extra.xmult = card.ability.extra.xmult - 0.25
-            end
+            card.ability.extra.xchips = card.ability.extra.xchips + 0.1
         end
         if context.joker_main then
             return {
-                xmult = card.ability.extra.xmult
+                xchips = card.ability.extra.xchips
             }
-        end
-        if context.end_of_round then
-            if G.GAME.current_round.hands_played <= 0 then
-                if not card.ability.extra.xmultIncrement then
-                    juice_card(card)
-                    card.ability.extra.xmult = card.ability.extra.xmult + 4
-                    card.ability.extra.xmultIncrement = true
-                end
-            end
         end
     end,
     in_pool = function(self, args)
@@ -409,13 +369,12 @@ SMODS.Joker{
 }
 
 SMODS.Joker{
-    key = "pride",
+    key = "sloth",
     loc_txt = {
-        name = "Pride",
+        name = "Sloth",
         text = {
-            'Winning a blind in one hand grants this joker x4 mult',
-            'Loses x0.25 mult for every card scored after the first hand.',
-            '(Can\'t go lower than x1, currently x#1#)'
+            'Cards that are in hand during scoring',
+            'gain triple their chips as perma mult '
         }
     },
     atlas = 'SinJokers',
@@ -443,32 +402,13 @@ SMODS.Joker{
         end
     end,
     calculate = function(self, card, context)
-        if context.setting_blind then
-            card.ability.extra.xmultIncrement = false
-        end
-        if context.individual and context.cardarea == G.play then
-            if G.GAME.current_round.hands_played > 0 and card.ability.extra.xmult > 1 then
-                juice_card(card)
-                card.ability.extra.xmult = card.ability.extra.xmult - 0.25
-            end
-        end
         if context.joker_main then
-            return {
-                xmult = card.ability.extra.xmult
-            }
-        end
-        if context.end_of_round then
-            if G.GAME.current_round.hands_played <= 0 then
-                if not card.ability.extra.xmultIncrement then
-                    juice_card(card)
-                    card.ability.extra.xmult = card.ability.extra.xmult + 4
-                    card.ability.extra.xmultIncrement = true
-                end
+            for k, v in ipairs(G.hand.cards) do
+                v.perma_mult = v.perma_mult + (v.base.value * 3)
             end
         end
     end,
     in_pool = function(self, args)
         return false
     end
-
-} ]]
+}
