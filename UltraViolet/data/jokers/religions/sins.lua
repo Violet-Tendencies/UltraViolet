@@ -393,7 +393,7 @@ SMODS.Joker{
         if context.joker_main then
             for k, v in ipairs(G.hand.cards) do
                 v.ability.perma_mult = v.ability.perma_mult + (v.base.nominal * 3)
-                v:juice_card()
+                juice_card(v)
             end
         end
     end,
