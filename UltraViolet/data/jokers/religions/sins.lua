@@ -49,9 +49,7 @@ SMODS.Joker{
         return { vars = {card.ability.extra.xmult} }
     end,
     add_to_deck = function(self, card, from_debuff)
-        for k, v in pairs(G.P_BLINDS) do
-            v.mult = v.mult*2 
-        end
+        G.GAME.starting_params.ante_scaling = (G.GAME.starting_params.ante_scaling or 1)*2
     end,
     calculate = function(self, card, context)
         if context.setting_blind then
@@ -112,9 +110,7 @@ SMODS.Joker{
         }
     },
     add_to_deck = function(self, card, from_debuff)
-        for k, v in pairs(G.P_BLINDS) do
-            v.mult = v.mult*2 
-        end
+        G.GAME.starting_params.ante_scaling = (G.GAME.starting_params.ante_scaling or 1)*2
     end,
     calculate = function(self, card, context)
         if context.open_booster then
@@ -166,9 +162,7 @@ SMODS.Joker{
         return { vars = {card.ability.extra.mult, card.ability.extra.chips} }
     end,
     add_to_deck = function(self, card, from_debuff)
-        for k, v in pairs(G.P_BLINDS) do
-            v.mult = v.mult*2 
-        end
+        G.GAME.starting_params.ante_scaling = (G.GAME.starting_params.ante_scaling or 1)*2
     end,
     calculate = function(self, card, context)
         if context.setting_blind then
@@ -234,9 +228,7 @@ SMODS.Joker{
         return { vars = {card.ability.extra.chips} }
     end,
     add_to_deck = function(self, card, from_debuff)
-        for k, v in pairs(G.P_BLINDS) do
-            v.mult = v.mult*2 
-        end
+        G.GAME.starting_params.ante_scaling = (G.GAME.starting_params.ante_scaling or 1)*2
     end,
     calculate = function(self, card, context)
         if context.setting_blind then
@@ -285,9 +277,7 @@ SMODS.Joker{
         return { vars = {card.ability.extra.xmult} }
     end,
     add_to_deck = function(self, card, from_debuff)
-        for k, v in pairs(G.P_BLINDS) do
-            v.mult = v.mult*2 
-        end
+        G.GAME.starting_params.ante_scaling = (G.GAME.starting_params.ante_scaling or 1)*2
     end,
     calculate = function(self, card, context)
         if context.individual and context.cardarea == G.play then
@@ -347,14 +337,14 @@ SMODS.Joker{
         for k, v in pairs(G.P_BLINDS) do
             v.mult = v.mult*2 
         end
-        G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+        G.consumeables.config.card_limit = G.consumeables.config.card_limit + 1
     end,
     remove_from_deck = function(self, card, from_debuff)
-        G.GAME.consumeable_buffer = G.GAME.consumeable_buffer - 1
+        G.consumeables.config.card_limit = G.consumeables.config.card_limit - 1
     end,
     calculate = function(self, card, context)
         if context.setting_blind then
-            card.ability.extra.xchips = card.ability.extra.xchips + 0.1
+            card.ability.extra.xchips = card.ability.extra.xchips + (0.1 * #G.consumeables.cards)
         end
         if context.joker_main then
             return {
@@ -397,18 +387,19 @@ SMODS.Joker{
         return { vars = {card.ability.extra.xmult} }
     end,
     add_to_deck = function(self, card, from_debuff)
-        for k, v in pairs(G.P_BLINDS) do
-            v.mult = v.mult*2 
-        end
+        G.GAME.starting_params.ante_scaling = (G.GAME.starting_params.ante_scaling or 1)*2
     end,
     calculate = function(self, card, context)
         if context.joker_main then
             for k, v in ipairs(G.hand.cards) do
-                v.perma_mult = v.perma_mult + (v.base.value * 3)
+                v.ability.perma_mult = v.ability.perma_mult + (v.base.nominal * 3)
+                v:juice_card()
             end
         end
     end,
     in_pool = function(self, args)
         return false
     end
+    
+
 }
