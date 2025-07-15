@@ -1,0 +1,16 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = "local cfg = (card and card.ability) or _c['config']"
+position = "after"
+match_indent = true
+payload = '''
+if _c and _c.rarity == "uv_sin" and first_pass then
+    info_queue[#info_queue + 1] = {set = "Other", key = "sin_description"}
+end
+'''
