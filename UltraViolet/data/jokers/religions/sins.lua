@@ -25,8 +25,10 @@ SMODS.Joker{
     loc_txt = {
         name = "Pride",
         text = {
-            'Winning a blind in one hand grants this joker x4 mult',
-            'Loses x0.25 mult for every card scored after the first hand.',
+            'Winning a blind in one hand',
+            'grants this joker x4 mult',
+            'Loses x0.25 mult for every card',
+            'scored after the first hand.',
             '(Can\'t go lower than x1, currently x#1#)'
         }
     },
@@ -91,8 +93,10 @@ SMODS.Joker{
     loc_txt = {
         name = "Greed",
         text = {
-            '+1 selection limit in booster packs',
-            'Gain $3 on round end for each joker held.'
+            '+1 selection limit',
+            'in booster packs',
+            'Gain $3 on round end',
+            'for each joker held.'
         }
     },
     atlas = 'SinJokers',
@@ -137,8 +141,10 @@ SMODS.Joker{
     loc_txt = {
         name = "Wrath",
         text = {
-            'If you use your final hand, gain +1 hand (once per round)',
-            'Gains +20 chips and +20 mult each time this ability is activated',
+            'If you use your final hand',
+            'gain +1 hand (once per round)',
+            'Gains +20 chips and +20 mult each',
+            'time this ability is activated',
             '(Currently +#2# and +#1#)'
         }
     },
