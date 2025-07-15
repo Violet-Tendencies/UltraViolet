@@ -67,7 +67,7 @@ SMODS.Joker{
             }
         end
         if context.end_of_round then
-            if G.GAME.current_round.hands_played <= 0 then
+            if G.GAME.current_round.hands_played <= 1 then
                 if not card.ability.extra.xmultIncrement then
                     juice_card(card)
                     card.ability.extra.xmult = card.ability.extra.xmult + 4
