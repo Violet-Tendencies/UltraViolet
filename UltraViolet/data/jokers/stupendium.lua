@@ -19,7 +19,8 @@ SMODS.Joker{
             'scored and for every card destroyed',
             'If the scored hand has 2 or more cards',
             'destroy one at random. {C:inactive}(Currently #1#){}',
-            '{C:inactive}That telephone\'s not tampered with\nof course it isn\'t listening! {}',
+            '{C:inactive}That telephone\'s not tampered with',
+            '{C:inactive}of course it isn\'t listening! {}',
             '{C:inactive}But were it, it prefers the words-{}',
             '{C:inactive}(Stupendium){}'
         }
@@ -93,7 +94,10 @@ SMODS.Joker{
             'Alternates between doubling or halving',
             'all displayed odds (Alternates after scoring)',
             '{C:inactive}(Currently: #1#){}',
-            '{C:inactive}Might be safer in the desert,\nonly dust to judge your sins.\nbut those who wager aren\'t so clever\n\'Cus in heaven, well-{}',
+            '{C:inactive}Might be safer in the desert,',
+            '{C:inactive}only dust to judge your sins.',
+            '{C:inactive}but those who wager aren\'t so clever',
+            '{C:inactive}\'Cus in heaven, well-',
             '{C:inactive}(Stupendium){}'
         }
     },
@@ -218,7 +222,7 @@ SMODS.Joker{
                     _cards[#_cards + 1] = v
                 end
             end
-            if _cards then
+            if #_cards >= 1 then
                 local selectedCard = pseudorandom_element(_cards, pseudoseed("MONICA"))
                 selectedCard:flip()
                 SMODS.change_base(selectedCard, "Clubs")
@@ -362,7 +366,8 @@ SMODS.Joker{
             '{C:inactive}(Currently: #1#){}',
             'and gains a random minor permanent',
             'effect when something is bought',
-            '{C:inactive}Pay your tab at the front desk,\nor death\'ll be slow.{}',
+            '{C:inactive}Pay your tab at the front desk',
+            '{C:inactive}or death\'ll be slow.{}',
             '{C:inactive}(Stupendium){}'
         }
     },
@@ -413,7 +418,8 @@ SMODS.Joker{
         name = "Big Red Button",
         text = {
             'Each hand destroys a random card in deck',
-            '{C:inactive}You know, I\'ve just realized that this\ndotted line around the globe is supposed to be the Equator...{}',
+            '{C:inactive}You know, I\'ve just realized that this',
+            '{C:inactive}dotted line around the globe is supposed to be the Equator...{}',
             '{C:inactive}I always thought of it more as a \'cut here\'{}',
             '{C:inactive}(Stupendium){}'
         }
@@ -488,6 +494,7 @@ SMODS.Joker{
             'Alternates between scoring +#3# chips',
             'and #4# mult each card scored',
             '{C:inactive}#2#{}',
+            '{C:inactive}#5#{}',
             '{C:inactive}(Stupendium){}'
         }
     },
@@ -509,11 +516,12 @@ SMODS.Joker{
             mult = -1,
             chips = 5,
             names = {"A Carousel", "A Carousel?", "A \"Carousel\"?", "A... \"Carousel\""},
-            lyrics = {"It\'s up to us all\nto make the merry go round!", "A teleporting exit door and-\nWHOA! HAHA! NEVER MIND!", "No, forget about the exit\nthere\'s so much to enjoy!", "Quit that line of thinking or\nelse you\'ll END UP IN THE BASEMENT!"}
+            lyrics1 = {"It\'s up to us all", "A teleporting exit door and-", "No, forget about the exit", "Quit that line of thinking or"},
+            lyrics2 = {"to make the merry go round!", "WHOA! HAHA! NEVER MIND!", "there\'s so much to enjoy!", "else you\'ll END UP IN THE BASEMENT!"}
         }
     },
     loc_vars = function(self, info_queue, card)
-        return { vars = {card.ability.extra.names[card.ability.extra.rounds], card.ability.extra.lyrics[card.ability.extra.rounds], card.ability.extra.chips * card.ability.extra.rounds, card.ability.extra.mult * card.ability.extra.rounds} }
+        return { vars = {card.ability.extra.names[card.ability.extra.rounds], card.ability.extra.lyrics1[card.ability.extra.rounds], card.ability.extra.chips * card.ability.extra.rounds, card.ability.extra.mult * card.ability.extra.rounds, card.ability.extra.lyrics2[card.ability.extra.rounds]} }
     end,
     calculate = function(self, card, context)
         if context.setting_blind then
