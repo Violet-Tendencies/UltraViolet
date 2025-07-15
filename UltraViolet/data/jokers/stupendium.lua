@@ -275,8 +275,7 @@ SMODS.Joker{
                     local CArd = pseudorandom_element(spade_cards, pseudoseed("draw!"))
                     G.E_MANAGER:add_event(Event({
                         func = function()
-                            draw_card(G.play, G.hand, 90, 'up', nil, CArd)
-                            draw_card(G.play, G.play, 90, 'up', nil, CArd)
+                            draw_card(G.discard, G.hand, 90, 'up', nil, CArd, 0, nil, false)
                             CArd:flip()
                             return true
                         end
