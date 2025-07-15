@@ -15,9 +15,11 @@ SMODS.Joker{
     loc_txt = {
         name = "GLORY TO THE MINISTRY.",
         text = {
-            'Gains {C:red}+1{} mult for every high card scored and for every card destroyed',
-            'If the scored hand has 2 or more cards, destroy one at random. {C:inactive}(Currently #1#){}',
-            '{C:inactive}That telephone\'s not tampered with, of course it isn\'t listening! {}',
+            'Gains {C:red}+1{} mult for every high card',
+            'scored and for every card destroyed',
+            'If the scored hand has 2 or more cards',
+            'destroy one at random. {C:inactive}(Currently #1#){}',
+            '{C:inactive}That telephone\'s not tampered with\nof course it isn\'t listening! {}',
             '{C:inactive}But were it, it prefers the words-{}',
             '{C:inactive}(Stupendium){}'
         }
@@ -84,9 +86,14 @@ SMODS.Joker{
     loc_txt = {
         name = "The House Always Wins",
         text = {
-            'If you aren\'t in debt, scores double your current money as chips and half your current money as mult but loses 2/5ths of your current money',
-            'Alternates between doubling or halving all displayed odds (Alternates after scoring) {C:inactive}(Currently: #1#){}',
-            '{C:inactive}Might be safer in the desert, only dust to judge your sins. but those who wager aren\'t so clever \'Cus in heaven, well-{}',
+            'If you aren\'t in debt,',
+            'scores double your current money as chips',
+            'and half your current money as mult',
+            'but loses 2/5ths of your current money',
+            'Alternates between doubling or halving',
+            'all displayed odds (Alternates after scoring)',
+            '{C:inactive}(Currently: #1#){}',
+            '{C:inactive}Might be safer in the desert,\nonly dust to judge your sins.\nbut those who wager aren\'t so clever\n\'Cus in heaven, well-{}',
             '{C:inactive}(Stupendium){}'
         }
     },
@@ -162,9 +169,11 @@ SMODS.Joker{
     loc_txt = {
         name = "Dear Diary",
         text = {
-            'Transforms a random non-club card in hand to a Club',
-            'scores mult based on how many clubs are in the deck {C:inactive}(currently: #1#){}',
-            '{C:inactive}MONICA\'S ALL THAT YOU NEED, MONICA\'S ALL THAT YOU NEED, MONICA\'S-{}',
+            'Transforms a random non-club',
+            'card in hand to a Club',
+            'scores mult based on how many',
+            'Clubs are in the deck {C:inactive}(currently: #1#){}',
+            '{C:inactive}MONICA\'S ALL THAT YOU NEED,\nMONICA\'S ALL THAT YOU NEED,\nMONICA\'S-{}',
             '{C:inactive}(Stupendium){}'
         }
     },
@@ -230,7 +239,8 @@ SMODS.Joker{
     loc_txt = {
         name = "The Art of Darkness",
         text = {
-            'Scoring all spades brings a random scored card back to the hand.',
+            'Scoring all spades brings a',
+            'random scored card back to the hand.',
             'Any played Hearts cards are destroyed.',
             '{C:inactive}Ever seen a masterpiece get discarded?{}',
             '{C:inactive}(Stupendium){}'
@@ -348,9 +358,11 @@ SMODS.Joker{
     loc_txt = {
         name = "Just Monkey Business",
         text = {
-            'Gains x0.5 mult when a card is destroyed {C:inactive}(Currently: #1#){}',
-            'and gains a random minor permanent effect when something is bought',
-            '{C:inactive}Pay your tab at the front desk, or death\'ll be slow.{}',
+            'Gains x0.5 mult when a card is destroyed',
+            '{C:inactive}(Currently: #1#){}',
+            'and gains a random minor permanent',
+            'effect when something is bought',
+            '{C:inactive}Pay your tab at the front desk,\nor death\'ll be slow.{}',
             '{C:inactive}(Stupendium){}'
         }
     },
@@ -401,7 +413,7 @@ SMODS.Joker{
         name = "Big Red Button",
         text = {
             'Each hand destroys a random card in deck',
-            '{C:inactive}You know, I\'ve just realized that this dotted line around the globe is supposed to be the Equator...{}',
+            '{C:inactive}You know, I\'ve just realized that this\ndotted line around the globe is supposed to be the Equator...{}',
             '{C:inactive}I always thought of it more as a \'cut here\'{}',
             '{C:inactive}(Stupendium){}'
         }
@@ -422,7 +434,7 @@ SMODS.Joker{
                 for _, playing_card in ipairs(G.deck.cards) do
                     _cards[#_cards + 1] = playing_card
                 end
-                local selectedCard = pseudorandom_element(_cards, pseudoseed("MONICA"))
+                local selectedCard = pseudorandom_element(_cards, pseudoseed("This a creative enough seed for you"))
                 SMODS.destroy_cards(selectedCard)
             end
         end
@@ -473,7 +485,8 @@ SMODS.Joker{
     loc_txt = {
         name = "#1#",
         text = {
-            'Alternates between scoring +#3# chips and #4# mult each card scored',
+            'Alternates between scoring +#3# chips',
+            'and #4# mult each card scored',
             '{C:inactive}#2#{}',
             '{C:inactive}(Stupendium){}'
         }
@@ -496,7 +509,7 @@ SMODS.Joker{
             mult = -1,
             chips = 5,
             names = {"A Carousel", "A Carousel?", "A \"Carousel\"?", "A... \"Carousel\""},
-            lyrics = {"It\'s up to us all to make the merry go round!", "A teleporting exit door and- WHOA! HAHA! NEVER MIND!", "No, forget about the exit there\'s so much to enjoy!", "Quit that line of thinking or else you\'ll END UP IN THE BASEMENT!"}
+            lyrics = {"It\'s up to us all\nto make the merry go round!", "A teleporting exit door and-\nWHOA! HAHA! NEVER MIND!", "No, forget about the exit\nthere\'s so much to enjoy!", "Quit that line of thinking or\nelse you\'ll END UP IN THE BASEMENT!"}
         }
     },
     loc_vars = function(self, info_queue, card)
