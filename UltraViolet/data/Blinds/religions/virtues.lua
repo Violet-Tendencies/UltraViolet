@@ -107,15 +107,6 @@ SMODS.Blind{
     },
     set_blind = function(self, reset, silent)
         G.hand:change_size(-3)
-        self.config.h_popup = parse_card_hover_box {
-            name = "Virtue",
-            text = {
-                "-3 hand size",
-                "+1 Joker slot",
-                "Awards Lust"
-
-            }
-        }
     end,
     debuff_hand = function(self, cards, hand, handname, check)
         return self.hands[handname]
@@ -152,6 +143,7 @@ SMODS.Blind{
         G.hand:change_size(-3)
         G.GAME.blind.chips = G.GAME.blind.chips + ((G.GAME.blind.chips/4) * G.GAME.consumeable_usage_total.all)
         G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+        G.GAME.blind:juice_up()
     end,
     defeat = function(self)
         G.hand:change_size(3)
@@ -195,6 +187,7 @@ SMODS.Blind{
     press_play = function(self)
         ease_dollars(-self.config.extra.dollars)
         self.config.extra.dollars = self.config.extra.dollars + (2 * #G.jokers.cards)
+        G.GAME.blind:juice_up()
     end,
     defeat = function(self)
         G.hand:change_size(3)
@@ -239,6 +232,7 @@ SMODS.Blind{
                     end
                 end
                 if any_selected then 
+                    G.GAME.blind:juice_up()
                     G.FUNCS.discard_cards_from_highlighted(nil, true) 
                     G.hand.config.highlighted_limit = G.hand.config.highlighted_limit - 99999 
                 end
@@ -289,6 +283,7 @@ SMODS.Blind{
     press_play = function(self)
         for k, v in ipairs(G.hand.cards) do
             v.ability.perma_chips = v.ability.perma_chips - 50
+            G.GAME.blind:juice_up()
         end
     end,
     defeat = function(self)
@@ -330,6 +325,7 @@ SMODS.Blind{
     press_play = function(self)
         G.GAME.blind.chips = G.GAME.blind.chips - self.config.extra.oneEighth
         G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+        G.GAME.blind:juice_up()
     end,
     defeat = function(self)
         G.hand:change_size(3)
