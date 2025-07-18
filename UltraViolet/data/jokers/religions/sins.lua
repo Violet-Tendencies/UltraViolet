@@ -340,7 +340,7 @@ SMODS.Joker{
     end,
     add_to_deck = function(self, card, from_debuff)
         for k, v in pairs(G.P_BLINDS) do
-            v.mult = v.mult*2 
+             G.GAME.starting_params.ante_scaling = (G.GAME.starting_params.ante_scaling or 1)*2
         end
         G.consumeables.config.card_limit = G.consumeables.config.card_limit + 1
     end,
