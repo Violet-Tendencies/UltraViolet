@@ -363,8 +363,6 @@ SMODS.Joker{
         text = {
             'Gains x0.5 mult when a card is destroyed',
             '{C:inactive}(Currently: #1#){}',
-            'and gains a random minor permanent',
-            'effect when something is bought',
             '{C:inactive}Pay your tab at the front desk',
             '{C:inactive}or death\'ll be slow.{}',
             '{C:inactive}(Stupendium){}'
@@ -393,20 +391,8 @@ SMODS.Joker{
                 return { xmult = card.ability.extra.mult}
             end
         end
-        if context.destroying_card then
+        if context.destroying_card and not context.end_of_round then
             card.ability.extra.mult = card.ability.extra.mult + 0.5
-        end
-        if context.buying_card then
-            local bonus = math.ceil(pseudorandom("hi", 1, 4))
-            if bonus == 1 then
-                card.ability.perma_bonus = (card.ability.perma_bonus or 0) + pseudorandom("hi", 1, 10)
-            elseif bonus == 2 then
-                card.ability.perma_mult = (card.ability.perma_mult or 0) + pseudorandom("hi", 1, 10)
-            elseif bonus == 3 then
-                card.ability.perma_x_chips = (card.ability.perma_x_chips or 0) + pseudorandom("hi", 1, 5)
-            elseif bonus == 4 then
-                card.ability.perma_x_mult = (card.ability.perma_x_mult or 0) + pseudorandom("hi", 1, 5)
-            end
         end
     end
 }
