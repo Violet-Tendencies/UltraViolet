@@ -131,7 +131,7 @@ SMODS.Joker{
         if context.end_of_round and not card.ability.extra.blindWon then
             card.ability.extra.blindWon = true
             card.ability.extra.xmult = card.ability.extra.xmult + 1
-            if G.GAME.blind.boss then
+            if context.blind.boss then
                 card.ability.extra.ante = card.ability.extra.ante + 1
                 if card.ability.extra.ante >= 4 then
                     SMODS.destroy_cards(card)
