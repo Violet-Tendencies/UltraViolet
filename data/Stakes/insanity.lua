@@ -1,7 +1,8 @@
 SMODS.Stake {
     name = "Purple Stake...?",
     key = "insanity",
-    applied_stakes = {},
+    applied_stakes = { "gold" },
+    prefix_config = { applied_stakes = { mod = false } },
     above_stake = 'gold',
     pos = { x = 0, y = 1 },
     sticker_pos = { x = 1, y = 1 },
