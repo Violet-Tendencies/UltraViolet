@@ -22,7 +22,6 @@ SMODS.Stake {
             timer = "TOTAL",
             func = function()
                 a = a + 1
-                print(a)
                 if a >= b then                
                     local choice = pseudorandom("uv_timer_choice", 1, 42)
                     if choice == 1 then 
