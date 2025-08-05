@@ -120,7 +120,7 @@ SMODS.Joker{
                 mult = card.ability.extra.mult
             }
         end
-        if context.retrigger_joker_check then
+        if context.retrigger_joker_check and not context.retrigger_joker and context.other_card == card then
             return {
                 repetitions = card.ability.extra.retriggers,
                 card = card
