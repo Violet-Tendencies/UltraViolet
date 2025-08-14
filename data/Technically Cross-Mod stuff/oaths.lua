@@ -221,6 +221,48 @@ function create_card(_type, area, legendary, _rarity, skip_materialize, soulable
     return card
 end
 
+local heheheiwonttell = get_blind_amount
+function get_blind_amount(ante)
+    local ret = heheheiwonttell(math.floor(ante))
+    local scale = (G.GAME.modifiers.scaling or 1)
+    local amounts = {
+        300,
+        700 + 100*scale,
+        1400 + 600*scale,
+        2100 + 2900*scale,
+        15000 + 5000*scale*math.log(scale),
+        12000 + 8000*(scale+1)*(0.4*scale),
+        10000 + 25000*(scale+1)*((scale/4)^2),
+        50000 * (scale+1)^2 * (scale/7)^2
+    }
+    if math.floor(ante) ~= ante or ante < 1 then
+        local a, b, c, d, e
+        e = ante
+        if ante < 0 then
+            e = -ante
+        else 
+            a, b, c, d = 100, 1.6, e, 1 + (0.2*e)
+        end
+        if e < -9 then
+            a, b, c, d = 100,1.6,-(e-8), 1 + -(0.2*(e-8))
+        end
+        if e <= 8 and e >= 1 then
+            a, b, c, d = amounts[math.floor(e)],1.6,e, 1 + 0.2*(e)
+        end
+        if e >= 9 then
+            a, b, c, d = amounts[math.floor(e)],1.6,e-8, 1 + 0.2*(e-8)
+        end
+        local amount = math.floor(a*(b+(0.75*c)^d)^c)
+        if e < 1 then
+            return math.floor((ret + (math.floor(amount * (e - math.floor(e)))))/2)
+        else
+            return math.floor(0.1 * (ret + (math.floor(amount * (e - math.floor(e)))))) 
+        end
+    else
+        return ret
+    end
+end
+
 SMODS.current_mod.calculate = function(self, context)
     if context.game_over then
         G.GAME.modifiers.oath_start = false
@@ -245,7 +287,7 @@ SMODS.current_mod.calculate = function(self, context)
                         }
                     end
                 end
-            if context.beat_boss then
+            if context.beat_boss and context.blind_defeated then
                 for k, v in ipairs(G.hand.cards) do
                     v.assiduityCounter = 0
                 end
@@ -253,10 +295,14 @@ SMODS.current_mod.calculate = function(self, context)
                     v.assiduityCounter = 0
                 end
                 for k, v in ipairs(G.deck.cards) do
-                    v.assiduityCounter = 0
+                    if v and v.assiduityCounter then
+                        v.assiduityCounter = 0
+                    end
                 end
                 for k, v in ipairs(G.play.cards) do
-                    v.assiduityCounter = 0
+                    if v and v.assiduityCounter then
+                        v.assiduityCounter = 0
+                    end
                 end
             end
         end
