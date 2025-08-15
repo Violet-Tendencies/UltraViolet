@@ -223,7 +223,9 @@ end
 
 local heheheiwonttell = get_blind_amount
 function get_blind_amount(ante)
-    local ret = heheheiwonttell(math.floor(ante))
+    local e = math.abs(ante)
+    local ret = heheheiwonttell(math.floor(e))
+    local ret2 = heheheiwonttell(math.floor(e) + 1)
     local scale = (G.GAME.modifiers.scaling or 1)
     local amounts = {
         300,
@@ -235,31 +237,10 @@ function get_blind_amount(ante)
         10000 + 25000*(scale+1)*((scale/4)^2),
         50000 * (scale+1)^2 * (scale/7)^2
     }
-    if math.floor(ante) ~= ante or ante < 1 then
-        local a, b, c, d, e
-        e = ante
-        if ante < 0 then
-            e = -ante
-        else 
-            a, b, c, d = 100, 1.6, e, 1 + (0.2*e)
-        end
-        if e < -9 then
-            a, b, c, d = 100,1.6,-(e-8), 1 + -(0.2*(e-8))
-        end
-        if e <= 8 and e >= 1 then
-            a, b, c, d = amounts[math.floor(e)],1.6,e, 1 + 0.2*(e)
-        end
-        if e >= 9 then
-            a, b, c, d = amounts[math.floor(e)],1.6,e-8, 1 + 0.2*(e-8)
-        end
-        local amount = math.floor(a*(b+(0.75*c)^d)^c)
-        if e < 1 then
-            return math.floor((ret + (math.floor(amount * (e - math.floor(e)))))/2)
-        else
-            return math.floor(0.1 * (ret + (math.floor(amount * (e - math.floor(e)))))) 
-        end
+    if e < 1 and e >= 0 then
+        return 100 + ((e - math.floor(e)) * (amounts[math.floor(e) + 1] - 100))
     else
-        return ret
+        return ret + ((e - math.floor(e)) * (ret2 - ret))
     end
 end
 
