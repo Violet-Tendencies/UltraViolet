@@ -360,7 +360,6 @@ SMODS.Joker{
     in_pool = function(self, args)
         return false
     end
-
 }
 
 SMODS.Joker{
