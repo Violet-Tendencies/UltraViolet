@@ -11,7 +11,6 @@ assert(SMODS.load_file("data/Technically Cross-Mod stuff/oaths.lua"))()
 SMODS.load_file("data/jokers/misc.lua")()
 SMODS.load_file("data/decks/religions/magics.lua")()
 SMODS.load_file("data/editions/emotions.lua")()
-SMODS.load_file("data/tname_boosters.lua")()
 
 
 ----------------------------------------------
