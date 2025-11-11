@@ -18,11 +18,7 @@ SMODS.Joker{
             'Gains {C:red}+1{} mult for every high card',
             'scored and for every card destroyed',
             'If the scored hand has 2 or more cards',
-            'destroy one at random. {C:inactive}(Currently #1#){}',
-            '{C:inactive}That telephone\'s not tampered with',
-            '{C:inactive}of course it isn\'t listening! {}',
-            '{C:inactive}But were it, it prefers the words-{}',
-            '{C:inactive}(Stupendium){}'
+            'destroy one at random. {C:inactive}(Currently #1#){}'
         }
     },
     atlas = "StupendiumJokers",
@@ -41,6 +37,7 @@ SMODS.Joker{
         }
     },
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = {set = "Other", key = "inspired_by_stupes"}
         return { vars = {card.ability.extra.mult} }
     end,
     calculate = function(self, card, context)
@@ -93,12 +90,7 @@ SMODS.Joker{
             'but loses 2/5ths of your current money',
             'Alternates between doubling or halving',
             'all displayed odds (Alternates after scoring)',
-            '{C:inactive}(Currently: #1#){}',
-            '{C:inactive}Might be safer in the desert,',
-            '{C:inactive}only dust to judge your sins.',
-            '{C:inactive}but those who wager aren\'t so clever',
-            '{C:inactive}\'Cus in heaven, well-',
-            '{C:inactive}(Stupendium){}'
+            '{C:inactive}(Currently: #1#){}'
         }
     },
     atlas = "StupendiumJokers",
@@ -116,6 +108,7 @@ SMODS.Joker{
         }
     },
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = {set = "Other", key = "inspired_by_stupes"}
         return { vars = {card.ability.extra.Odds} }
     end,
     add_to_deck = function(self, card, from_debuff)
@@ -177,8 +170,7 @@ SMODS.Joker{
             'card in hand to a Club',
             'scores mult based on how many',
             'Clubs are in the deck {C:inactive}(currently: #1#){}',
-            '{C:inactive}MONICA\'S ALL THAT YOU NEED,\nMONICA\'S ALL THAT YOU NEED,\nMONICA\'S-{}',
-            '{C:inactive}(Stupendium){}'
+            '{C:inactive}MONICA\'S ALL THAT YOU NEED,\nMONICA\'S ALL THAT YOU NEED,\nMONICA\'S-{}'
         }
     },
     atlas = "StupendiumJokers",
@@ -196,6 +188,7 @@ SMODS.Joker{
         }
     },
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = {set = "Other", key = "inspired_by_stupes"}
         return { vars = {card.ability.extra.mult} }
     end,
     add_to_deck = function(self, card, from_debuff)
@@ -245,9 +238,7 @@ SMODS.Joker{
         text = {
             'Scoring all spades brings a',
             'random scored card back to the hand.',
-            'Any played Hearts cards are destroyed.',
-            '{C:inactive}Ever seen a masterpiece get discarded?{}',
-            '{C:inactive}(Stupendium){}'
+            'Any played Hearts cards are destroyed.'
         }
     },
     atlas = "StupendiumJokers",
@@ -259,6 +250,9 @@ SMODS.Joker{
     unlocked = true,
     discovered = false,
     pos = {x=0, y=0},
+    loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = {set = "Other", key = "inspired_by_stupes"}
+    end,
     calculate = function(self, card, context)
         if context.after then
             local heart_cards = {} 
@@ -360,11 +354,8 @@ SMODS.Joker{
     loc_txt = {
         name = "Just Monkey Business",
         text = {
-            'Gains x0.5 mult when a card is destroyed',
+            'Gains x0.25 mult when a card is destroyed',
             '{C:inactive}(Currently: #1#){}',
-            '{C:inactive}Pay your tab at the front desk',
-            '{C:inactive}or death\'ll be slow.{}',
-            '{C:inactive}(Stupendium){}'
         }
     },
     atlas = "StupendiumJokers",
@@ -382,6 +373,7 @@ SMODS.Joker{
         }
     },
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = {set = "Other", key = "inspired_by_stupes"}
         return { vars = {card.ability.extra.mult} }
     end,
     calculate = function(self, card, context)
@@ -391,7 +383,7 @@ SMODS.Joker{
             end
         end
         if context.destroying_card and not context.end_of_round then
-            card.ability.extra.mult = card.ability.extra.mult + 0.5
+            card.ability.extra.mult = card.ability.extra.mult + 0.25
         end
     end
 }
@@ -401,11 +393,7 @@ SMODS.Joker{
     loc_txt = {
         name = "Big Red Button",
         text = {
-            'Each hand destroys a random card in deck',
-            '{C:inactive}You know, I\'ve just realized that this',
-            '{C:inactive}dotted line around the globe is supposed to be the Equator...{}',
-            '{C:inactive}I always thought of it more as a \'cut here\'{}',
-            '{C:inactive}(Stupendium){}'
+            'Each hand destroys a random card in deck'
         }
     },
     atlas = "StupendiumJokers",
@@ -417,6 +405,9 @@ SMODS.Joker{
     unlocked = true,
     discovered = false,
     pos = {x=0, y=0},
+    loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = {set = "Other", key = "inspired_by_stupes"}
+    end,
     calculate = function(self, card, context)
         if context.after then
             if #G.deck.cards > 0 then
@@ -478,8 +469,7 @@ SMODS.Joker{
             'Alternates between scoring +#3# chips',
             'and #4# mult each card scored',
             '{C:inactive}#2#{}',
-            '{C:inactive}#5#{}',
-            '{C:inactive}(Stupendium){}'
+            '{C:inactive}#5#{}'
         }
     },
     atlas = "StupendiumJokers",
@@ -505,6 +495,7 @@ SMODS.Joker{
         }
     },
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = {set = "Other", key = "inspired_by_stupes"}
         return { vars = {card.ability.extra.names[card.ability.extra.rounds], card.ability.extra.lyrics1[card.ability.extra.rounds], card.ability.extra.chips * card.ability.extra.rounds, card.ability.extra.mult * card.ability.extra.rounds, card.ability.extra.lyrics2[card.ability.extra.rounds]} }
     end,
     calculate = function(self, card, context)
@@ -559,7 +550,6 @@ SMODS.Joker{
             'Scores +1 chips for every card in the discard (currently: +#2#)',
             '{C:inactive}(currently: #3#){}',
             '{C:inactive}HAHAHAHAHAAHAHAHAAAHAAHELPHAHAAAAAHHHAHAHAHAAAHAHHHAHHA{}',
-            '{C:inactive}(Stupendium){}'
         }
     },
     atlas = "StupendiumJokers",
@@ -580,6 +570,7 @@ SMODS.Joker{
         }
     },
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = {set = "Other", key = "inspired_by_stupes"}
         if G.deck ~= nil and G.discard ~= nil then
             return { vars = {card.ability.extra.mult * (#G.deck.cards or 0), card.ability.extra.chips * (#G.discard.cards or 0), (card.ability.extra.xchips or 0)} }
         else
