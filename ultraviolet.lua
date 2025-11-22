@@ -6,12 +6,11 @@ assert(SMODS.load_file("data/jokers/rivals.lua"))()
 assert(SMODS.load_file("data/jokers/stupendium.lua"))()
 assert(SMODS.load_file("data/jokers/religions/sins.lua"))()
 assert(SMODS.load_file("data/Consumables/stupendium.lua"))()
---assert(SMODS.load_file("data/blinds/error.lua"))()
 assert(SMODS.load_file("data/blinds/religions/virtues.lua"))()
-assert(SMODS.load_file("data/stakes/insanity.lua"))()
+-- assert(SMODS.load_file("data/stakes/insanity.lua"))() (reworking (what was I on when making this))
 assert(SMODS.load_file("data/Technically Cross-Mod stuff/oaths.lua"))()
 SMODS.load_file("data/jokers/misc.lua")()
-SMODS.load_file("data/decks/religions/magics.lua")()
+-- SMODS.load_file("data/decks/religions/magics.lua")()
 -- SMODS.load_file("data/editions/emotions.lua")()
 
 
@@ -100,3 +99,6 @@ function parse_card_hover_box(data, vars)
 
   return element
 end
+--------------------------------------------------------
+
+
