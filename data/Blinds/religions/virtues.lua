@@ -261,39 +261,39 @@ SMODS.Blind{
     end,
 }
 
-SMODS.Blind{
-    key = "kindness",
-    loc_txt = {
-        name = "Kindness",
-        text = {
-            "Scored cards lose 50 chips"
-        }
-    },
-    dollars = 8,
-    mult = 4,
-    boss = {
-        min = 4
-    },
-    boss_colour = HEX('2b7d53'),
-    -- atlas = "virtueblinds",
-    pos = {x = 0, y = 0},
-    set_blind = function(self, reset, silent)
-        G.hand:change_size(-3)
-    end,
-    press_play = function(self)
-        for k, v in ipairs(G.hand.cards) do
-            v.ability.perma_chips = v.ability.perma_chips - 50
-            G.GAME.blind:juice_up()
-        end
-    end,
-    defeat = function(self)
-        G.hand:change_size(3)
-        G.jokers.config.card_limit = G.jokers.config.card_limit + 1
-        local clone = SMODS.create_card({set = "Joker", area = G.jokers, key = "j_uv_envy"})
-        clone:add_to_deck()
-        G.jokers:emplace(clone)
-    end,
-}
+-- SMODS.Blind{
+--     key = "kindness",
+--     loc_txt = {
+--         name = "Kindness",
+--         text = {
+--             "Scored cards lose 50 chips"
+--         }
+--     },
+--     dollars = 8,
+--     mult = 4,
+--     boss = {
+--         min = 4
+--     },
+--     boss_colour = HEX('2b7d53'),
+--     -- atlas = "virtueblinds",
+--     pos = {x = 0, y = 0},
+--     set_blind = function(self, reset, silent)
+--         G.hand:change_size(-3)
+--     end,
+--     press_play = function(self)
+--         for k, v in ipairs(G.hand.cards) do
+--             v.ability.perma_chips = (0 - 50 or (v.ability.perma_chips - 50))
+--             G.GAME.blind:juice_up()
+--         end
+--     end,
+--     defeat = function(self)
+--         G.hand:change_size(3)
+--         G.jokers.config.card_limit = G.jokers.config.card_limit + 1
+--         local clone = SMODS.create_card({set = "Joker", area = G.jokers, key = "j_uv_envy"})
+--         clone:add_to_deck()
+--         G.jokers:emplace(clone)
+--     end,
+-- }
 
 SMODS.Blind{
     key = "patience",
