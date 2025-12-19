@@ -112,9 +112,6 @@ SMODS.Joker{
                 xmult = card.ability.extra.xmult
             }
         end
-    end,
-    in_pool = function(self, args)
-        return false
     end
 }
 
@@ -171,9 +168,6 @@ SMODS.Joker{
                 repetitions = 1
             }
         end
-    end,
-    in_pool = function(self, args)
-        return false
     end
 }
 
@@ -249,6 +243,16 @@ SMODS.Joker{
 
 SMODS.Joker{
     key = "iza_no_mikoto",
+    loc_txt = {
+        name = "#1#-no-Mikoto",
+        text = {
+            'At the start of a round, creates a random Joker.',
+            'This Joker gains x#6# #2# per dollar',
+            'of sell value for every Joker #3# or #4#.',
+            'Sell this joker to transform it into #5# {C:inactive}(once per round){}.',
+            '{C:inactive}(Currently: x#7# mult and x#8# chips){}'
+        }
+    },
     atlas = 'DeityJokers',
     rarity = 4,
     cost = -2000,
@@ -334,10 +338,6 @@ SMODS.Joker{
         if context.end_of_round and context.main_eval then
             card.ability.extra.swapped = false
         end
-
-    end,
-    in_pool = function(self, args)
-        return false
     end
 }
 
@@ -383,9 +383,6 @@ SMODS.Joker{
                 end
             end
         end
-    end,
-    in_pool = function(self, args)
-        return false
     end
 }
 
@@ -441,8 +438,5 @@ SMODS.Joker{
                 colour = G.C.GOLD
             }
         end
-    end,
-    in_pool = function(self, args)
-        return false
     end
 }
