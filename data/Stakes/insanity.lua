@@ -154,7 +154,3 @@ SMODS.Stake {
         }
     }
 }
-
-UV_insanity_progress = function(percentage)
-    
-end
