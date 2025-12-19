@@ -2,7 +2,7 @@ return {
     descriptions = {
         Other = {
             sin_description = {
-                name = "Sin",
+                name = "Sin", -- Ty srockw for helping me impliment this tooltip
                 text = {
                     "Permanently doubles all blind",
                     "requirements upon being obtained."
@@ -61,16 +61,8 @@ return {
             },
             inspired_by_stupes = {
                 name = "Inspired by...",
-                text = {
-                    "The Stupendium!",
-                    "Go check out their music!"
-                }
-            },
+                text = {"The Stupendium! Go check out their music!"}
+            }
         },
-    },
-    misc = {
-        dictionary = {
-            saved_by_toyotama = "Divine Intervention!"
-        }
     }
 }

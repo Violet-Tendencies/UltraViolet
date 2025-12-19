@@ -162,7 +162,7 @@ SMODS.Joker{
 }
 
 SMODS.Joker{
-    key = "monica",
+    key = "monika",
     loc_txt = {
         name = "Dear Diary",
         text = {
@@ -170,7 +170,7 @@ SMODS.Joker{
             'card in hand to a Club',
             'scores mult based on how many',
             'Clubs are in the deck {C:inactive}(currently: #1#){}',
-            '{C:inactive}MONICA\'S ALL THAT YOU NEED,\nMONICA\'S ALL THAT YOU NEED,\nMONICA\'S-{}'
+            '{C:inactive}MONIKA\'S ALL THAT YOU NEED,\nMONIKA\'S ALL THAT YOU NEED,\nMONIKA\'S-{}'
         }
     },
     atlas = "StupendiumJokers",
@@ -241,7 +241,7 @@ SMODS.Joker{
             'Any played Hearts cards are destroyed.'
         }
     },
-    atlas = "StupendiumJokers",
+    atlas = "darkest_art",
     rarity = 2,
     cost = 4,
     blueprint_compat = false,
